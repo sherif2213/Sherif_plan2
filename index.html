@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sherif Study Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a0e1a;--card:#161d2e;--card2:#1a2235;
+  --blue:#3b82f6;--blue2:#60a5fa;--border:rgba(59,130,246,0.15);
+  --text:#e2e8f0;--muted:#64748b;
+}
+body{min-height:100vh;background:var(--navy);font-family:'Inter',sans-serif;color:var(--text);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:0;
+  background-image:linear-gradient(rgba(59,130,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.04) 1px,transparent 1px);
+  background-size:40px 40px;pointer-events:none;}
+body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;z-index:100;
+  background:linear-gradient(90deg,#3b82f6,#06b6d4,#a855f7,#3b82f6);
+  background-size:300% 100%;animation:shineBar 3s linear infinite;}
+@keyframes shineBar{to{background-position:300% 0}}
+.wrap{position:relative;z-index:1;max-width:700px;margin:0 auto;padding:48px 16px 80px;}
+header{text-align:center;margin-bottom:44px;}
+.header-tag{display:inline-block;padding:4px 14px;border-radius:99px;
+  background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);
+  font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue2);margin-bottom:14px;}
+header h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,10vw,5rem);letter-spacing:0.04em;line-height:1;
+  background:linear-gradient(135deg,#fff,#60a5fa,#06b6d4);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.tagline{margin-top:8px;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 8px;text-align:center;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;
+  background:linear-gradient(135deg,#60a5fa,#06b6d4);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.stat-lbl{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:3px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px 22px;margin-bottom:14px;}
+.card-label{font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--blue2);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.card-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
+.exam-grid{display:grid;gap:8px;}
+.exam-row{display:flex;align-items:center;gap:12px;padding:10px 14px;
+  background:var(--card2);border-radius:10px;border:1px solid rgba(59,130,246,0.1);}
+.exam-date-col{min-width:52px;}
+.exam-date{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--blue2);line-height:1;}
+.exam-day-lbl{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-top:1px;}
+.exam-name{flex:1;font-size:0.85rem;font-weight:600;}
+.exam-badge{padding:3px 10px;border-radius:99px;font-size:0.68rem;font-weight:700;white-space:nowrap;}
+.progress-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:10px;}
+.progress-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;
+  background:linear-gradient(135deg,#60a5fa,#06b6d4);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.bar-track{height:8px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;margin-bottom:10px;}
+.bar-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#06b6d4);border-radius:99px;width:0%;transition:width 0.7s cubic-bezier(.4,0,.2,1);}
+.badges{display:flex;gap:8px;flex-wrap:wrap;}
+.badge{padding:3px 11px;border-radius:99px;font-size:0.7rem;font-weight:500;}
+.badge-done{background:rgba(34,197,94,0.12);color:#4ade80;border:1px solid rgba(34,197,94,0.25);}
+.badge-left{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid rgba(255,255,255,0.08);}
+.phase-banner{display:flex;align-items:center;gap:10px;padding:10px 14px;
+  border-radius:10px;margin:8px 0 8px;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.ph1{background:rgba(6,182,212,0.08);border:1px solid rgba(6,182,212,0.2);color:#22d3ee;}
+.ph2{background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.2);color:#c084fc;}
+.ph3{background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.2);color:#fb923c;}
+.ph4{background:rgba(234,179,8,0.08);border:1px solid rgba(234,179,8,0.2);color:#facc15;}
+.task-wrapper{margin-bottom:7px;}
+.task-item{display:flex;align-items:center;border-radius:12px;border:1px solid;overflow:hidden;transition:transform 0.15s;cursor:pointer;}
+.task-item:hover{transform:translateX(3px);}
+.task-item.todo  {background:var(--card2);border-color:rgba(59,130,246,0.15);}
+.task-item.done  {background:rgba(34,197,94,0.06);border-color:rgba(34,197,94,0.25);}
+.task-item.review{background:rgba(234,179,8,0.07);border-color:rgba(234,179,8,0.25);}
+.task-item.review.done{background:rgba(34,197,94,0.06);border-color:rgba(34,197,94,0.25);}
+.task-item.exam  {background:rgba(239,68,68,0.08);border-color:rgba(239,68,68,0.3);cursor:default;}
+.task-item.after-exam{background:rgba(59,130,246,0.06);border-color:rgba(59,130,246,0.2);}
+.task-item.after-exam.done{background:rgba(34,197,94,0.06);border-color:rgba(34,197,94,0.25);}
+.task-accent{width:3px;align-self:stretch;flex-shrink:0;}
+.task-item.todo   .task-accent{background:linear-gradient(180deg,#3b82f6,#06b6d4);}
+.task-item.done   .task-accent{background:linear-gradient(180deg,#22c55e,#4ade80);}
+.task-item.review .task-accent{background:linear-gradient(180deg,#eab308,#facc15);}
+.task-item.review.done .task-accent{background:linear-gradient(180deg,#22c55e,#4ade80);}
+.task-item.exam   .task-accent{background:linear-gradient(180deg,#ef4444,#f97316);}
+.task-item.after-exam .task-accent{background:linear-gradient(180deg,#3b82f6,#a855f7);}
+.task-item.after-exam.done .task-accent{background:linear-gradient(180deg,#22c55e,#4ade80);}
+.task-inner{flex:1;display:flex;align-items:center;gap:10px;padding:11px 12px;}
+.task-date-col{display:flex;flex-direction:column;min-width:64px;flex-shrink:0;}
+.task-date{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--blue2);line-height:1;}
+.task-day-name{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-top:2px;}
+.task-pills{flex:1;display:flex;flex-wrap:wrap;gap:5px;}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;
+  border-radius:99px;font-size:0.72rem;font-weight:500;border:1px solid;white-space:nowrap;}
+.pill-nn  {background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.3);color:#c084fc;}
+.pill-kb  {background:rgba(6,182,212,0.1);border-color:rgba(6,182,212,0.3);color:#22d3ee;}
+.pill-comp{background:rgba(249,115,22,0.1);border-color:rgba(249,115,22,0.3);color:#fb923c;}
+.pill-anlp{background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.3);color:#60a5fa;}
+.pill-emb {background:rgba(234,179,8,0.1);border-color:rgba(234,179,8,0.3);color:#facc15;}
+.pill-exam{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;}
+.pill-rev {background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.25);color:#4ade80;}
+.task-item.done .pill-nn,.task-item.done .pill-kb,.task-item.done .pill-comp,
+.task-item.done .pill-anlp,.task-item.done .pill-emb,
+.task-item.after-exam.done .pill-anlp,.task-item.after-exam.done .pill-emb,
+.task-item.review.done .pill-rev{background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.25);color:#4ade80;}
+.check-btn{flex-shrink:0;width:28px;height:28px;border-radius:50%;border:2px solid;
+  background:transparent;display:flex;align-items:center;justify-content:center;
+  font-size:0.78rem;transition:all 0.2s;margin-right:10px;}
+.task-item.todo   .check-btn{border-color:rgba(59,130,246,0.4);color:var(--blue);}
+.task-item.done   .check-btn{background:rgba(34,197,94,0.15);border-color:#4ade80;color:#4ade80;}
+.task-item.review .check-btn{border-color:rgba(234,179,8,0.4);color:#eab308;}
+.task-item.review.done .check-btn{background:rgba(34,197,94,0.15);border-color:#4ade80;color:#4ade80;}
+.task-item.after-exam .check-btn{border-color:rgba(59,130,246,0.4);color:var(--blue);}
+.task-item.after-exam.done .check-btn{background:rgba(34,197,94,0.15);border-color:#4ade80;color:#4ade80;}
+.task-item.exam   .check-btn{display:none;}
+.motiv-bubble{display:none;padding:10px 14px;
+  background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.15);border-top:none;
+  border-radius:0 0 11px 11px;font-size:0.81rem;line-height:1.6;color:#94a3b8;font-style:italic;}
+.motiv-bubble.visible{display:block;}
+.motiv-sig{display:block;margin-top:4px;font-size:0.7rem;color:var(--blue2);font-style:normal;font-weight:600;}
+.reset-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;text-align:center;}
+.reset-btn{border:1px solid rgba(59,130,246,0.25);background:transparent;color:var(--muted);
+  font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:500;
+  letter-spacing:0.14em;text-transform:uppercase;padding:9px 26px;
+  border-radius:99px;cursor:pointer;transition:all 0.2s;}
+.reset-btn:hover{background:rgba(59,130,246,0.1);border-color:var(--blue);color:var(--blue2);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="header-tag">Computer Science - Mansoura University</div>
+    <h1>Sherif's<br>Study Plan</h1>
+    <p class="tagline">4th Year - CS - Final Exams 2026</p>
+  </header>
+
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num">28</div><div class="stat-lbl">Days</div></div>
+    <div class="stat-box"><div class="stat-num">44</div><div class="stat-lbl">Lectures</div></div>
+    <div class="stat-box"><div class="stat-num">5</div><div class="stat-lbl">Reviews</div></div>
+    <div class="stat-box"><div class="stat-num">5</div><div class="stat-lbl">Exams</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">🎯 Exam Schedule</div>
+    <div class="exam-grid">
+      <div class="exam-row">
+        <div class="exam-date-col"><div class="exam-date">7/6</div><div class="exam-day-lbl">Sunday</div></div>
+        <div class="exam-name" style="color:#c084fc">🧠 Neural Networks</div>
+        <span class="exam-badge" style="background:rgba(168,85,247,0.15);color:#c084fc;border:1px solid rgba(168,85,247,0.3)">11:30 AM</span>
+      </div>
+      <div class="exam-row">
+        <div class="exam-date-col"><div class="exam-date">10/6</div><div class="exam-day-lbl">Wednesday</div></div>
+        <div class="exam-name" style="color:#22d3ee">🗄️ Knowledge Base</div>
+        <span class="exam-badge" style="background:rgba(6,182,212,0.15);color:#22d3ee;border:1px solid rgba(6,182,212,0.3)">11:30 AM</span>
+      </div>
+      <div class="exam-row">
+        <div class="exam-date-col"><div class="exam-date">13/6</div><div class="exam-day-lbl">Saturday</div></div>
+        <div class="exam-name" style="color:#fb923c">⚙️ Compiler</div>
+        <span class="exam-badge" style="background:rgba(249,115,22,0.15);color:#fb923c;border:1px solid rgba(249,115,22,0.3)">11:30 AM</span>
+      </div>
+      <div class="exam-row">
+        <div class="exam-date-col"><div class="exam-date">15/6</div><div class="exam-day-lbl">Monday</div></div>
+        <div class="exam-name" style="color:#60a5fa">🗣️ ANLP</div>
+        <span class="exam-badge" style="background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.3)">11:30 AM</span>
+      </div>
+      <div class="exam-row">
+        <div class="exam-date-col"><div class="exam-date">20/6</div><div class="exam-day-lbl">Saturday</div></div>
+        <div class="exam-name" style="color:#facc15">🔌 Embedded Systems</div>
+        <span class="exam-badge" style="background:rgba(234,179,8,0.15);color:#facc15;border:1px solid rgba(234,179,8,0.3)">11:30 AM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">📊 Progress</div>
+    <div class="progress-top">
+      <div class="progress-num" id="pct">0<span style="font-size:1.2rem;color:var(--muted)">%</span></div>
+      <div style="font-size:0.76rem;color:var(--muted)" id="days-label">0 of 27 days</div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" id="bar"></div></div>
+    <div class="badges">
+      <span class="badge badge-done" id="badge-done">0 Completed</span>
+      <span class="badge badge-left" id="badge-left">27 Remaining</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">📅 Full Plan</div>
+    <div id="tasks"></div>
+  </div>
+
+  <div class="reset-card">
+    <button class="reset-btn" onclick="resetData()">Reset All Progress</button>
+  </div>
+</div>
+
+<script>
+var MOTIVS = [
+  'Phase 1 starts. KB and Compiler first. Clear the board before NN.',
+  'Day 2. Two subjects moving in parallel. Efficient and focused.',
+  'Day 3. KB halfway done. The deadline awareness is built in.',
+  'Day 4. Four days of consistency. Most people quit before this.',
+  'Day 5. KB almost done. One more day.',
+  'Day 6. KB done after tomorrow. Compiler neck and neck.',
+  'Day 7. KB complete. Compiler done. Phase 1 closed. NN gets your full attention now.',
+  'Phase 2. Neural Networks undivided. 11 lecs, 6 days. All yours.',
+  'NN Day 2. No distractions. Just you and the material.',
+  'NN Day 3. Three sessions deep. The momentum is real.',
+  'NN Day 4. Past halfway on NN. ANLP warming up on the side.',
+  'NN Day 5. Two lecs left. Almost there.',
+  'NN complete. All 11 done. Review tomorrow then you own it.',
+  'ANLP Lec 1 and 2 done. One day left before NN review.',
+  'Neural Networks review. Lock it all in. Tomorrow is yours.',
+  'Post NN exam. KB review in 2 days. Stay sharp.',
+  'ANLP 3+4 and Embedded 1. Three fronts, controlled.',
+  'KB review. Everything you studied is in your head. Trust it.',
+  'ANLP 5+6 and Embedded 2. Consistent execution.',
+  'Compiler review. Three exams down after tomorrow.',
+  'Compiler exam done. ANLP 7+8 and Embedded 3 today. Finish the evening strong.',
+  'ANLP review. You have covered all 8 lectures. Go show them.',
+  'Embedded Phase 4. Final boss. 10 lecs, 4 days.',
+  'Embedded Day 2. Halfway there.',
+  'Embedded Day 3. Two more sessions.',
+  'Embedded all done. Last exam tomorrow. Victory lap.',
+  'Embedded review. Last one. Season finale.'
+];
+
+var plan = [
+  {date:'23/5',day:'Saturday', type:'study',     phase:1, lecs:[['Knowledge Base',1,'kb'],['Compiler',1,'comp']]},
+  {date:'24/5',day:'Sunday',   type:'study',     phase:1, lecs:[['Knowledge Base',2,'kb'],['Compiler',2,'comp']]},
+  {date:'25/5',day:'Monday',   type:'study',     phase:1, lecs:[['Knowledge Base',3,'kb'],['Compiler',3,'comp']]},
+  {date:'26/5',day:'Tuesday',  type:'study',     phase:1, lecs:[['Knowledge Base',4,'kb'],['Compiler',4,'comp']]},
+  {date:'27/5',day:'Wednesday',type:'study',     phase:1, lecs:[['Knowledge Base',5,'kb'],['Compiler',5,'comp']]},
+  {date:'28/5',day:'Thursday', type:'study',     phase:1, lecs:[['Knowledge Base',6,'kb'],['Compiler',6,'comp']]},
+  {date:'29/5',day:'Friday',   type:'study',     phase:1, lecs:[['Knowledge Base',7,'kb'],['Compiler',7,'comp']]},
+  {date:'30/5',day:'Saturday', type:'study',     phase:2, lecs:[['Neural Networks',1,'nn'],['Compiler',8,'comp']]},
+  {date:'31/5',day:'Sunday',   type:'study',     phase:2, lecs:[['Neural Networks',2,'nn'],['Neural Networks',3,'nn']]},
+  {date:'1/6', day:'Monday',   type:'study',     phase:2, lecs:[['Neural Networks',4,'nn'],['Neural Networks',5,'nn']]},
+  {date:'2/6', day:'Tuesday',  type:'study',     phase:2, lecs:[['Neural Networks',6,'nn'],['Neural Networks',7,'nn']]},
+  {date:'3/6', day:'Wednesday',type:'study',     phase:2, lecs:[['Neural Networks',8,'nn'],['Neural Networks',9,'nn']]},
+  {date:'4/6', day:'Thursday', type:'study',     phase:2, lecs:[['Neural Networks',10,'nn'],['Neural Networks',11,'nn']]},
+  {date:'5/6', day:'Friday',   type:'study',     phase:2, lecs:[['ANLP',1,'anlp'],['ANLP',2,'anlp']]},
+  {date:'6/6', day:'Saturday', type:'review',    phase:2, lecs:[['Review Neural Networks','','rev']]},
+  {date:'7/6', day:'Sunday',   type:'exam',      phase:2, lecs:[['EXAM: Neural Networks','','exam']]},
+  {date:'8/6', day:'Monday',   type:'study',     phase:3, lecs:[['ANLP',3,'anlp'],['ANLP',4,'anlp'],['Embedded',1,'emb']]},
+  {date:'9/6', day:'Tuesday',  type:'review',    phase:3, lecs:[['Review Knowledge Base','','rev']]},
+  {date:'10/6',day:'Wednesday',type:'exam',      phase:3, lecs:[['EXAM: Knowledge Base','','exam']]},
+  {date:'11/6',day:'Thursday', type:'study',     phase:3, lecs:[['ANLP',5,'anlp'],['ANLP',6,'anlp'],['Embedded',2,'emb']]},
+  {date:'12/6',day:'Friday',   type:'review',    phase:3, lecs:[['Review Compiler','','rev']]},
+  {date:'13/6',day:'Saturday', type:'exam',      phase:3, lecs:[['EXAM: Compiler','','exam']]},
+  {date:'13/6',day:'Saturday', type:'after-exam',phase:3, lecs:[['ANLP',7,'anlp'],['ANLP',8,'anlp'],['Embedded',3,'emb']]},
+  {date:'14/6',day:'Sunday',   type:'review',    phase:3, lecs:[['Review ANLP','','rev']]},
+  {date:'15/6',day:'Monday',   type:'exam',      phase:3, lecs:[['EXAM: ANLP','','exam']]},
+  {date:'16/6',day:'Tuesday',  type:'study',     phase:4, lecs:[['Embedded',4,'emb'],['Embedded',5,'emb']]},
+  {date:'17/6',day:'Wednesday',type:'study',     phase:4, lecs:[['Embedded',6,'emb'],['Embedded',7,'emb']]},
+  {date:'18/6',day:'Thursday', type:'study',     phase:4, lecs:[['Embedded',8,'emb'],['Embedded',9,'emb']]},
+  {date:'19/6',day:'Friday',   type:'study',     phase:4, lecs:[['Embedded',10,'emb']]},
+  {date:'19/6',day:'Friday',   type:'review',    phase:4, lecs:[['Review Embedded','','rev']]},
+  {date:'20/6',day:'Saturday', type:'exam',      phase:4, lecs:[['EXAM: Embedded Systems','','exam']]}
+];
+
+var PHASE_INFO = {
+  1:{label:'PHASE 1: KB + Compiler First',cls:'ph1',icon:'🗄️'},
+  2:{label:'PHASE 2: Neural Networks All-In',cls:'ph2',icon:'🧠'},
+  3:{label:'PHASE 3: Post-NN Cleanup',cls:'ph3',icon:'⚙️'},
+  4:{label:'PHASE 4: Embedded Final Boss',cls:'ph4',icon:'🔌'}
+};
+
+var KEY = 'sherif_v4';
+var done = [];
+
+function loadDone(){ try{ var r=localStorage.getItem(KEY); if(r) done=JSON.parse(r); if(!Array.isArray(done)) done=[]; }catch(e){ done=[]; } }
+function saveDone(){ try{ localStorage.setItem(KEY,JSON.stringify(done)); }catch(e){} }
+
+function playSound(){
+  try{
+    var ctx=new(window.AudioContext||window.webkitAudioContext)();
+    [[440,0],[554,0.1],[659,0.2],[880,0.32]].forEach(function(ft){
+      var o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='triangle'; o.frequency.value=ft[0];
+      g.gain.setValueAtTime(0.06,ctx.currentTime+ft[1]);
+      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+ft[1]+0.28);
+      o.connect(g); g.connect(ctx.destination);
+      o.start(ctx.currentTime+ft[1]); o.stop(ctx.currentTime+ft[1]+0.3);
+    });
+  }catch(e){}
+}
+
+function toggle(i){ if(plan[i].type==='exam') return; done[i]=!done[i]; saveDone(); if(done[i]) playSound(); render(); }
+
+function render(){
+  var container=document.getElementById('tasks');
+  if(!container) return;
+  container.innerHTML='';
+  var shownPhases={};
+  var motivCount=0;
+
+  for(var i=0;i<plan.length;i++){
+    var day=plan[i]; var isDone=!!done[i]; var ph=day.phase;
+
+    if(!shownPhases[ph]){
+      var pb=document.createElement('div');
+      pb.className='phase-banner '+PHASE_INFO[ph].cls;
+      pb.textContent=PHASE_INFO[ph].icon+' '+PHASE_INFO[ph].label;
+      container.appendChild(pb);
+      shownPhases[ph]=true;
+    }
+
+    var wrapper=document.createElement('di
